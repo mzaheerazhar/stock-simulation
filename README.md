@@ -5,6 +5,7 @@ A simple django app where user can
 * See available stock
 * Make transaction on any Ticker
 
+
 ## Features
 * Python
 * Django
