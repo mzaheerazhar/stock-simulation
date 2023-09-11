@@ -3,6 +3,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from market_simulation.serializers.registration_serializer import RegistrationSerializer
+import market_simulation.common.constants as constant
 
 
 class RegistrationAPIView(APIView):
@@ -17,7 +18,7 @@ class RegistrationAPIView(APIView):
         return Response(
             {
                 "success": True,
-                "message": "your account has been created successfully"
+                "message": constant.REGISTERATION_SUCCESS
             },
             status=status.HTTP_201_CREATED,
         )

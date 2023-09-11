@@ -10,5 +10,4 @@ class User(AbstractUser, BaseModel, PermissionsMixin):
     password = models.CharField(max_length=128)
     is_staff = models.BooleanField(default=False)
     is_enabled = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
-    balance = models.IntegerField(default=100000)
+    balance = models.FloatField()

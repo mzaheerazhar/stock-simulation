@@ -1,9 +1,10 @@
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from market_simulation.models import StockData
 from market_simulation.serializers import StockSerializer
+import market_simulation.common.constants as constant
 
 
 class StockDataAPIView(ModelViewSet):
@@ -27,21 +28,22 @@ class StockDataAPIView(ModelViewSet):
         return Response(
             {
                 "success": True,
-                "message": "stock has been created"
+                "message": constant.STOCK_CREATED
             },
             status=status.HTTP_201_CREATED,
         )
 
     def update(self, request, *args, **kwargs):
-        stock = request.data
+        stock = request.GET
         instance = StockData.objects.filter(id=stock.get("id")).first()
+        if not instance:
+            return Response({'detail': constant.STOCK_NOT_FOUND}, status=status.HTTP_404_NOT_FOUND)
         serializer = self.serializer_class(instance, data=stock, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(
-            {
+        return Response({
                 "success": True,
-                "message": "stock has been updated"
+                "message": constant.STOCK_UPDATED
             },
             status=status.HTTP_200_OK,
         )

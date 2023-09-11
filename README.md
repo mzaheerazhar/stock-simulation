@@ -28,7 +28,7 @@ source env/bin/activate
 
 ### Install the required modules:
 ```shell
-pip install -r requirements.txt
+bash ./setup.sh
 ```
 
 ### Run migrations:
@@ -51,5 +51,3 @@ celery -A stock_market_simulation worker -l INFO
 
 ### Postman collection link
 `https://drive.google.com/drive/folders/11GuRSBpB3-cF2XDjVrsOHjwOucl7PTNK?usp=sharing`
-
-
